@@ -1,39 +1,46 @@
+package classesProject;
+
 import java.util.Scanner;
 
 public class VendingTester {
+
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
-		//Creates Products 
-		Product sprite = new Product("Sprite", 500, 2.50);
-		Product.productList.add(sprite);  //S
-		Product coke = new Product("coke", 20, 1.50);
-		Product.productList.add(coke);   // Sprite, Coke
-		Product dietCoke = new Product("Diet Coke", 500, 2.50);
-		Product.productList.add(dietCoke); // Sprite, Coke, DietCoke
-		Product cactusCooler = new Product("Cactus Cooler", 500, 2.50);
-		Product.productList.add(cactusCooler); // Sprite, Coke, Diet Coke, CactusCooler
-		Product monster = new Product("Monster", 500, 3.50);
-		Product.productList.add(monster);  // Sprite, Coke, Diet Coke, CactusCooler
+		VendingMachine vendingMachine = new VendingMachine();
 		
+		//Creates Products 		
+		vendingMachine.restock("Sprite", 10, 2.50);
+		vendingMachine.restock("Coke", 10, 1.75);
+		vendingMachine.restock("Diet Coke", 10, 1.75);
+		vendingMachine.restock("Cactus Cooler", 10, 2.35);
+		vendingMachine.restock("Monster", 10, 1.99);
 		
-		String selection;
 		//Menu
-		System.out.println("Enter a number for the following "
-				+ "Selection:\n1.Insert Coins\n2.Check Prices\n"
-				+ "3.Restock Products\n4.Exit");
-		selection = in.nextLine();
-		if( selection.equals("1")) {
-			System.out.println("Enter in coin(quarter,dime,nickel,penny):");
-			selection = in.nextLine();
-		}else if (selection.equals("2")) {
-			for(int i = 0; i< Product.productList.size(); i++) {
-				
+		String selection = "";
+		while(!selection.equals("6")) {
+			System.out.println("Enter a number for the following selection:\n"
+					+ "-------User-------\n1. Insert Coins\n2. Check Prices\n3. Select Product\n"
+					+ "-----Operator-----\n4. Restock Products\n5. Remove money\n"
+					+ "------------------\n6.Exit");
+			selection = in.nextLine().trim();
+			if(selection.equals("1")) {
+				String coin = "";
+				while(!coin.equals("done")) {
+					System.out.println("Enter coin name (quarter, dime, nickel, penny) or done:");
+					coin = in.nextLine().trim();
+					if(!coin.equals("done")) {
+						System.out.println("How many of that coin:");
+						String stringAmount = in.nextLine().trim();
+						int amount = Integer.parseInt(stringAmount);
+						vendingMachine.insertCoins(coin, amount);
+					}
+				}
+			}else if (selection.equals("2")) {
+				System.out.println(vendingMachine.checkPrices());
 			}
-		}
-		
-		
-		
+		}		
 	}
 
+	
 }

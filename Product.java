@@ -1,16 +1,15 @@
-import java.util.ArrayList;
+package classesProject;
 
 public class Product {
-	public static ArrayList<Product> productList = new ArrayList<Product>();
-	int qty;
-	double price;
-	String name;
+
+	private int qty;
+	private double price;
+	private String name;
 	
 	public Product() {
-		name = "Soda";
-		qty = 30;
-		price = 1.00;
-		
+		name = "N/A";
+		qty = 0;
+		price = 0.00;
 	}
 	
 	public Product(String name, int qty, double price ) {
@@ -19,28 +18,36 @@ public class Product {
 		this.price = price;
 	}
 	
-	public void reStock(int amountStocking) {
-		qty += amountStocking;
+	public String getName() {
+		return name;
 	}
 	
-	public void changePrice(double price) {
+	public double getPrice() {
+		return price;
+	}
+	
+	public int getQty() {
+		return qty;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	
-	public void buyProduct(Product product) {
-		product.qty --;
+	public void addQty(int qty) {
+		this.qty += qty;
 	}
 	
+	public void removeQty(int qty) {
+		this.qty -= qty;
+	}
 	
 	public String toString() {
-		
-		String str ="";
-		str += " " + name + "\n Price:" + price;
-		
-		return str;
+		return "There are " + qty + " " + name + "s available.\n";
 	}
 	
-	
-	
-			
 }
