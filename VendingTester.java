@@ -36,8 +36,12 @@ public class VendingTester {
 						vendingMachine.insertCoins(coin, amount);
 					}
 				}
-			}else if (selection.equals("2")) {
+			}
+			else if(selection.equals("2")) {
 				System.out.println(vendingMachine.checkPrices());
+			}
+			else if(selection.equals("3")) {
+				System.out.println(vendingMachine.listProducts());
 			}
 		}		
 	}

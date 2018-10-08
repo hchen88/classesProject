@@ -113,6 +113,14 @@ public class VendingMachine {
 		return products;
 	}
 	
+	public String listProducts() {
+		String products = "Products Listed:\n";
+		for(Product product : stock) {
+			products += product.getName() + "\n";
+		}
+		return products;
+	}
+	
 	public String toString() {
 		String products = "";
 		String coins = "";
