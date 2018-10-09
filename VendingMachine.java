@@ -1,6 +1,7 @@
 package classesProject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class VendingMachine {
 
@@ -130,13 +131,17 @@ public class VendingMachine {
 	 * a product from the vending machine
 	 * @param productName- string type of the product name to purchase
 	 */
-	public void buy(String productName) {
+	public ArrayList<Boolean> buy(String productName) {
 		int total = 0;
 		boolean soldOut = true;
+		ArrayList<Boolean> booleanList=new ArrayList<Boolean>();
+		booleanList.add(true); //first index for sold out boolean
+		booleanList.add(true); //second index for sufficient funds boolean
 		
 		for(Product product : stock) {
 			if(product.getName().equals(productName) && product.getQty() != 0) {
 				soldOut = false;
+				booleanList.set(0, false);
 				for(Coin coin : insertedCoins) {
 					total += coin.getTotal();
 				}
@@ -147,19 +152,20 @@ public class VendingMachine {
 					}
 					product.removeQty(1);
 					insertedCoins.clear();
-					System.out.println("-----Dispensing " + productName + "----\n" );
-					System.out.println("-----" + productName + " Dispensed----\n" );
+//					System.out.println("-----Dispensing " + productName + "----\n" );
+//					System.out.println("-----" + productName + " Dispensed----\n" );
 				}
 				else {
-					System.out.println("Insufficient money to purchase the " + productName);
-
+//					System.out.println("Insufficient money to purchase the " + productName);
+					booleanList.set(1, false);
 				}
 			}
 		}
-		if(soldOut) {
-			System.out.println(productName + " is sold out.");
-
-		}
+//		if(soldOut) {
+//			System.out.println(productName + " is sold out.");
+//		}
+		
+		return booleanList;
 	}
 	/**
 	 * this method gets the prices of each product in the vending machine
@@ -208,6 +214,8 @@ public class VendingMachine {
 		}
 		return total;
 	}
+	
+	
 	/**
 	 * to string method to display products and coins in vending machine
 	 */

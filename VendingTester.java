@@ -1,5 +1,6 @@
 package classesProject;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class VendingTester {
@@ -48,7 +49,15 @@ public class VendingTester {
 				System.out.println(vendingMachine.listProducts());
 				System.out.println("Enter a product name (Sprite, Coke, Diet Coke, Cactus Cooler, Monster):");
 				product = in.nextLine().trim();
-				vendingMachine.buy(product); //buys product
+				ArrayList<Boolean> booleanArray = new ArrayList<Boolean>(vendingMachine.buy(product)); //buys product
+				if(!booleanArray.get(1)) { //Insufficient 
+					System.out.println("Insufficient Funds to purchase the " + product);
+				}else if (booleanArray.get(0)) {
+					System.out.println(product + " is sold out.");
+				}else if (!booleanArray.get(0)) {
+					System.out.println("-----Dispensing " + product + "----\n" );
+					System.out.println("-----" + product + " Dispensed----\n" );
+				}
 				System.out.println("-----Press Enter to return to menu----");
 				selection = in.nextLine().trim(); 
 			} else if (selection.equals("4")) {
