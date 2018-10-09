@@ -88,7 +88,7 @@ public class VendingMachine {
 	 * this method prints out total of coins to be removed and then removes all coins from vending machines 
 	 * from both inserted coins and coins available ArrayLists.
 	 */
-	public void removeAllCoins() {
+	public String removeAllCoins() {
 		double total = 0;
 		for(Coin coin : insertedCoins) {
 			total += coin.getTotal();
@@ -96,9 +96,10 @@ public class VendingMachine {
 		for(Coin coin : coinsAvailable) {
 			total += coin.getTotal();
 		}
-		System.out.printf("Removed $%.2f%n", total);
+		String str = String.format("Removed $%.2f%n", total);
 		insertedCoins.clear();
 		coinsAvailable.clear();
+		return str;
 		}
 	/**
 	 * this method changes the price of specific product.
@@ -137,6 +138,7 @@ public class VendingMachine {
 	 * this method is used to purchase 
 	 * a product from the vending machine
 	 * @param productName- string type of the product name to purchase
+	 * @return - returns a boolean ArrayList for tester to output "sold out" or "insufficient funds" message.
 	 */
 	public ArrayList<Boolean> buy(String productName) {
 		int total = 0;
@@ -159,18 +161,12 @@ public class VendingMachine {
 					}
 					product.removeQty(1);
 					insertedCoins.clear();
-//					System.out.println("-----Dispensing " + productName + "----\n" );
-//					System.out.println("-----" + productName + " Dispensed----\n" );
 				}
 				else {
-//					System.out.println("Insufficient money to purchase the " + productName);
 					booleanList.set(1, false);
 				}
 			}
 		}
-//		if(soldOut) {
-//			System.out.println(productName + " is sold out.");
-//		}
 		
 		return booleanList;
 	}
