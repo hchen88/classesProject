@@ -139,29 +139,27 @@ public class VendingMachine {
 	 */
 	public ArrayList<Boolean> buy(String productName) {
 		int total = 0;
-		//boolean soldOut = true;
 		ArrayList<Boolean> booleanList=new ArrayList<Boolean>();
 		booleanList.add(true); //first index for sold out boolean
 		booleanList.add(true); //second index for sufficient funds boolean
 		
 		for(Product product : stock) {
 			if(product.getName().equals(productName) && product.getQty() != 0) {
-				//soldOut = false;
-				booleanList.set(0, false);
+				booleanList.set(0, false);// sets 1st index in ArrayList to false
 				for(Coin coin : insertedCoins) {
 					total += coin.getTotal();
 				}
 				if(total >= product.getPrice()) { // buying product
-					for(Coin coin : insertedCoins) {
+					for(Coin coin : insertedCoins) {  
 						this.addCoins(coin.getName(), coin.getQty());
-						coin.setQty(0);
+						coin.setQty(0); // reomves coins 
 					}
-					product.removeQty(1); 
+					product.removeQty(1);  //insufficent funds
 					insertedCoins.clear();
 					
 				}
 				else { 
-					booleanList.set(1, false);
+					booleanList.set(1, false); // sets 2nd index in ArrayList to false
 					for(Coin coin : insertedCoins) {
 						coin.setQty(0);
 					}
@@ -178,10 +176,10 @@ public class VendingMachine {
 	public String checkPrices() {
 		String products = "";
 		for(Product product : stock) {
-			String twoDecimalPlaces = String.format("%.2f", product.getPrice());
+			String twoDecimalPlaces = String.format("%.2f", product.getPrice()); // Concatenates string of Products and prices. 
 			products += product.getName() + ": $" + twoDecimalPlaces + "\n";
 		}
-		return products;
+		return products; // returns the string
 	}
 	/**
 	 * this method used to display a list of products in the vending machine
@@ -190,7 +188,7 @@ public class VendingMachine {
 	public String listProducts() {
 		String products = "Products Listed:\n";
 		for(Product product : stock) {
-			products += product.getName() + "\n";
+			products += product.getName() + "\n"; // // Concatenates string of Products 
 		}
 		return products;
 	}

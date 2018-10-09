@@ -67,6 +67,7 @@ public class VendingTester {
 					System.out.println("Insufficient Funds to purchase the " + product);  // outputs Insufficent Funds
 				}else if (booleanArray.get(0)) {
 					System.out.println(product + " is sold out."); // product is sold out
+					
 				}else if (!booleanArray.get(0)) {
 					System.out.println("-----Dispensing " + product + "----\n" ); //product purchased and dispensing
 					System.out.println("-----" + product + " Dispensed----\n" );
