@@ -2,7 +2,14 @@ package classesProject;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**	
+ * Scott Arima and Howard Chen
+ * 08 October 2018
+ * Purpose of the program- Simulate Vending Machine with capabilities making transactions, 
+ * 						   re-stocking products, withdrawing funds.  
+ * Inputs: selections from vending menu
+ * Output: Game Log - Displays vending actions, insufficient funds/stock.
+ */
 public class VendingTester {
 
 	public static void main(String[] args) {
@@ -83,6 +90,7 @@ public class VendingTester {
 				
 			}
 		}		
+		in.close();
 	}
 
 	

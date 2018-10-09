@@ -1,8 +1,15 @@
 package classesProject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
+/**	
+ * Scott Arima and Howard Chen
+ * 08 October 2018
+ * Purpose of the program- Simulate Vending Machine with capabilities making transactions, 
+ * 						   re-stocking products, withdrawing funds.  
+ * Inputs: selections from vending menu
+ * Output: Game Log - Displays vending actions, insufficient funds/stock.
+ */
 public class VendingMachine {
 
 	private ArrayList<Product> stock = new ArrayList<Product>();
@@ -133,14 +140,14 @@ public class VendingMachine {
 	 */
 	public ArrayList<Boolean> buy(String productName) {
 		int total = 0;
-		boolean soldOut = true;
+		//boolean soldOut = true;
 		ArrayList<Boolean> booleanList=new ArrayList<Boolean>();
 		booleanList.add(true); //first index for sold out boolean
 		booleanList.add(true); //second index for sufficient funds boolean
 		
 		for(Product product : stock) {
 			if(product.getName().equals(productName) && product.getQty() != 0) {
-				soldOut = false;
+				//soldOut = false;
 				booleanList.set(0, false);
 				for(Coin coin : insertedCoins) {
 					total += coin.getTotal();
@@ -214,8 +221,6 @@ public class VendingMachine {
 		}
 		return total;
 	}
-	
-	
 	/**
 	 * to string method to display products and coins in vending machine
 	 */

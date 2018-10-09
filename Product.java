@@ -1,5 +1,12 @@
 package classesProject;
-
+/**	
+ * Scott Arima and Howard Chen
+ * 08 October 2018
+ * Purpose of the program- Simulate Vending Machine with capabilities making transactions, 
+ * 						   re-stocking products, withdrawing funds.  
+ * Inputs: selections from vending menu
+ * Output: Game Log - Displays vending actions, insufficient funds/stock.
+ */
 public class Product {
 	//instance variables
 	private int qty; // qty of products
