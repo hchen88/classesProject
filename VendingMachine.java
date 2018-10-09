@@ -90,9 +90,6 @@ public class VendingMachine {
 	 */
 	public String removeAllCoins() {
 		double total = 0;
-		for(Coin coin : insertedCoins) {
-			total += coin.getTotal();
-		}
 		for(Coin coin : coinsAvailable) {
 			total += coin.getTotal();
 		}
@@ -154,16 +151,20 @@ public class VendingMachine {
 				for(Coin coin : insertedCoins) {
 					total += coin.getTotal();
 				}
-				if(total >= product.getPrice()) {
+				if(total >= product.getPrice()) { // buying product
 					for(Coin coin : insertedCoins) {
 						this.addCoins(coin.getName(), coin.getQty());
 						coin.setQty(0);
 					}
-					product.removeQty(1);
+					product.removeQty(1); 
 					insertedCoins.clear();
+					
 				}
-				else {
+				else { 
 					booleanList.set(1, false);
+					for(Coin coin : insertedCoins) {
+						coin.setQty(0);
+					}
 				}
 			}
 		}
