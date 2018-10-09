@@ -10,11 +10,11 @@ public class VendingTester {
 		VendingMachine vendingMachine = new VendingMachine();
 		
 		//Creates Products 		
-		vendingMachine.restock("Sprite", 10, 2.50);
-		vendingMachine.restock("Coke", 10, 1.75);
-		vendingMachine.restock("Diet Coke", 10, 1.75);
-		vendingMachine.restock("Cactus Cooler", 10, 2.35);
-		vendingMachine.restock("Monster", 10, 1.99);
+		vendingMachine.restock("Sprite", 10, true, 2.50);
+		vendingMachine.restock("Coke", 1, true, 1.75);
+		vendingMachine.restock("Diet Coke", 10, true, 1.75);
+		vendingMachine.restock("Cactus Cooler", 10, true, 2.35);
+		vendingMachine.restock("Monster", 10, true, 1.99);
 		
 		//Menu
 		String selection = "";
@@ -36,12 +36,42 @@ public class VendingTester {
 						vendingMachine.insertCoins(coin, amount);
 					}
 				}
+
+				System.out.printf("You inserted $%.2f%n", vendingMachine.getInsertedCoinsTotals());
 			}
 			else if(selection.equals("2")) {
-				System.out.println(vendingMachine.checkPrices());
+				System.out.println(vendingMachine.checkPrices() + "\n..Press enter to continue..");
+				selection = in.nextLine().trim(); 
 			}
 			else if(selection.equals("3")) {
+				String product = "";			
 				System.out.println(vendingMachine.listProducts());
+				System.out.println("Enter a product name (Sprite, Coke, Diet Coke, Cactus Cooler, Monster):");
+				product = in.nextLine().trim();
+				vendingMachine.buy(product); //buys product
+				System.out.println("-----Press Enter to return to menu----");
+				selection = in.nextLine().trim(); 
+			} else if (selection.equals("4")) {
+				String product = "";
+				System.out.println("Enter a product name (Sprite, Coke, Diet Coke, Cactus Cooler, Monster):");
+				product = in.nextLine().trim();
+				System.out.println("How many would you like to restock?");
+				String stringAmount = in.nextLine().trim();
+				int amount = Integer.parseInt(stringAmount);
+				System.out.println("Would you like to change the price of this product? yes/no");
+				String changeProduct = in.nextLine().trim();
+				if(changeProduct.equals("yes")){
+					System.out.println("Enter in the price: ");
+					String priceString = in.nextLine().trim();
+					double price = Double.parseDouble(priceString);
+					vendingMachine.restock(product, amount, true, price);
+				}else if(changeProduct.equals("no")) {
+					vendingMachine.restock(product, amount, false, 0);				
+				}
+				
+			}else if (selection.equals("5")) {
+				vendingMachine.removeAllCoins();
+				
 			}
 		}		
 	}
